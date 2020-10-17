@@ -1,6 +1,6 @@
 import { noop } from '../../util/core';
 import { on } from '../../util/dom';
-import { parseQuery, getPath } from '../util';
+import { cleanPath, parseQuery, getPath } from '../util';
 import { History } from './base';
 
 export class HTML5History extends History {
@@ -68,5 +68,10 @@ export class HTML5History extends History {
       file: this.getFile(path),
       query: parseQuery(query),
     };
+  }
+
+  toURL(path, params, currentRoute) {
+    let pathTmp = super.toURL(path, params, currentRoute);
+    return cleanPath(( this.config.basePathHistory || '' ) + pathTmp) ;
   }
 }
