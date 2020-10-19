@@ -71,7 +71,8 @@ export class HTML5History extends History {
   }
 
   toURL(path, params, currentRoute) {
-    let pathTmp = super.toURL(path, params, currentRoute);
+    let pathTmp = History.prototype.toURL.call(this, path, params, currentRoute);
+    if( this.config.basePathHistory && pathTmp.indexOf(this.config.basePathHistory) ===0 ) return pathTmp ;
     return cleanPath(( this.config.basePathHistory || '' ) + pathTmp) ;
   }
 }
