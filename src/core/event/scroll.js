@@ -155,6 +155,7 @@ export function scrollIntoView(path, id) {
   const active = dom.find(sidebar, 'li.active');
   active && active.classList.remove('active');
   li && li.classList.add('active');
+  nav[path] && nav[path].classList.add('active');
 }
 
 const scrollEl = dom.$.scrollingElement || dom.$.documentElement;
